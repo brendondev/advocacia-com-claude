@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advocacia com Claude — 90 prompts para a prática jurídica</title>
+<meta name="description" content="90 prompts para a prática jurídica e a gestão do escritório. Cada um proíbe inventar dados, normas e decisões e termina com uma conferência antes do uso. E-book em PDF + prompts em texto, R$ 67.">
+<meta property="og:title" content="Advocacia com Claude — 90 prompts para a prática jurídica">
+<meta property="og:description" content="O risco não é usar IA. É usar sem método. E-book em PDF + 90 prompts em texto.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:type" content="product">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23102C40'/%3E%3Cpath d='M11 8H7v16h4M21 8h4v16h-4' fill='none' stroke='%23EFBA86' stroke-width='2.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&family=Gelasio:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#102C40; --navy-2:#1C4958; --peach:#EFBA86; --teal:#2A6F86;
+  --sky:#E6EEF4; --paper:#FFFFFF; --ink:#102C40; --ink-2:#3C5566;
+  --rule:#C5D3DE; --shadow:rgba(16,44,64,.14);
+  --serif:"Gelasio",Georgia,"Times New Roman",serif;
+  --sans:"Carlito",Calibri,"Segoe UI",Arial,sans-serif;
+  --wrap:1180px; --gut:clamp(16px,4vw,40px);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--sky);color:var(--ink);font:400 1.125rem/1.6 var(--sans);text-rendering:optimizeLegibility}
+::selection{background:var(--peach);color:var(--navy)}
+a{color:var(--teal);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{color:var(--navy)}
+:focus-visible{outline:3px solid var(--peach);outline-offset:3px}
+img,video{display:block;max-width:100%;height:auto}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;text-wrap:balance;color:var(--navy)}
+h1{font-size:clamp(2.4rem,5.2vw,4.1rem);line-height:1.05}
+h2{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.1}
+h3{font-size:1.45rem;line-height:1.2}
+p{max-width:66ch}
+.lead{font-size:1.3rem;line-height:1.5;color:var(--ink-2)}
+.small{font-size:.95rem;color:var(--ink-2)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:56px;padding:0 1.6rem;font:700 1.08rem/1 var(--sans);text-decoration:none;border:2px solid var(--navy);transition:background .18s,color .18s,transform .18s}
+.btn-main{background:var(--navy);color:#fff;box-shadow:6px 7px 0 var(--peach)}
+.btn-main:hover{background:var(--navy-2);color:#fff;transform:translate(-1px,-1px)}
+.btn-main:active{transform:translate(2px,2px);box-shadow:3px 4px 0 var(--peach)}
+.btn-ghost{background:transparent;color:var(--navy)}
+.btn-ghost:hover{background:var(--paper);color:var(--navy)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* header */
+.top{padding:22px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font:500 1.15rem/1 var(--serif);color:var(--navy);text-decoration:none}
+.brand i{display:block;width:24px;height:26px;position:relative}
+.brand i::before,.brand i::after{content:"";position:absolute;top:0;bottom:0;width:8px;border:3px solid var(--peach)}
+.brand i::before{left:0;border-right:0}.brand i::after{right:0;border-left:0}
+.top .btn{min-height:44px;padding:0 1.1rem;font-size:1rem;box-shadow:none}
+
+/* hero */
+.hero{padding:clamp(24px,5vw,64px) 0 clamp(56px,8vw,104px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:center}
+.hero p.lead{margin-top:1.4rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px 18px;margin-top:2rem}
+.hero .small{margin-top:1.1rem}
+.screen{position:relative}
+.screen video{box-shadow:16px 18px 0 var(--shadow)}
+.screen video{width:100%;aspect-ratio:16/9;background:var(--navy)}
+.screen figcaption{position:absolute;left:0;right:0;bottom:-2.2rem;font-size:.9rem;color:var(--ink-2)}
+
+/* news */
+.news{background:var(--paper);padding:clamp(56px,8vw,104px) 0}
+.news .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,5vw,72px)}
+.cases{display:grid;gap:0;border-top:2px solid var(--navy)}
+.case{display:grid;grid-template-columns:9.5rem 1fr;gap:6px 28px;padding:26px 0;border-bottom:1px solid var(--rule)}
+.case b{font:500 2.6rem/1 var(--serif);color:var(--navy);letter-spacing:-.02em}
+.case b small{display:block;margin-top:.45rem;font:400 .95rem/1.3 var(--sans);letter-spacing:0;color:var(--ink-2)}
+.case p{font-size:1.1rem}
+.case cite{display:block;margin-top:.5rem;font-style:normal;font-size:.95rem;color:var(--ink-2)}
+.turn{margin-top:2.2rem;font:400 1.55rem/1.35 var(--serif);color:var(--navy);max-width:34ch}
+
+/* ficha */
+.ficha{padding:clamp(56px,8vw,112px) 0}
+.ficha header{max-width:48rem}
+.ficha header p{margin-top:1rem}
+.anno{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);margin-top:clamp(32px,5vw,56px);align-items:start}
+.page{position:relative;background:var(--paper);box-shadow:16px 18px 0 var(--shadow)}
+.mark{position:absolute;left:7.4%;width:85.2%}
+.mark::before,.mark::after{content:"";position:absolute;top:-4px;bottom:-4px;width:14px;border:3px solid var(--peach)}
+.mark::before{left:-6px;border-right:0}.mark::after{right:-6px;border-left:0}
+.m1{top:26.2%;height:2.3%}
+.m2{top:31.2%;height:3.5%}
+.m3{top:86.8%;height:4.2%}
+.notes{list-style:none;padding:0;display:grid;gap:28px;position:sticky;top:24px}
+.notes li{position:relative;padding-left:30px}
+.notes li::before{content:"";position:absolute;left:0;top:.35rem;bottom:.35rem;width:12px;border:3px solid var(--peach);border-right:0}
+.notes h3{font-size:1.3rem}
+.notes p{margin-top:.35rem;font-size:1.05rem;color:var(--ink-2)}
+.notes q{font-family:var(--serif);color:var(--navy);quotes:"“" "”"}
+
+/* included */
+.included{background:var(--navy);color:#fff;padding:clamp(56px,8vw,104px) 0}
+.included h2,.included h3{color:#fff}
+.included .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px)}
+.included .lead{color:#C9D7E1;margin-top:1rem}
+.files{list-style:none;padding:0;border-top:1px solid rgba(255,255,255,.22)}
+.files li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.22)}
+.files span{color:#C9D7E1;font-size:1.02rem;grid-column:1}
+.files em{grid-row:1/3;grid-column:2;align-self:center;font:700 .85rem/1 var(--sans);font-style:normal;letter-spacing:.08em;color:var(--peach)}
+.areas-h{margin-top:clamp(40px,6vw,64px)}
+.areas{list-style:none;padding:0;margin-top:1.2rem;columns:3 13rem;column-gap:32px}
+.areas li{break-inside:avoid;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.14);display:flex;gap:12px;font-size:1.08rem}
+.areas li span{font:700 .9rem/1.9 var(--sans);color:var(--peach);min-width:1.6rem;font-variant-numeric:tabular-nums}
+
+/* sigilo */
+.sigilo{padding:clamp(56px,8vw,104px) 0}
+.sigilo .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,5vw,72px);align-items:start}
+.sigilo p{margin-top:1rem}
+.rules{list-style:none;padding:0;border-top:2px solid var(--navy)}
+.rules li{padding:18px 0;border-bottom:1px solid var(--rule);font:400 1.3rem/1.35 var(--serif);color:var(--navy)}
+
+/* offer */
+.offer{background:var(--paper);padding:clamp(56px,8vw,104px) 0}
+.offer .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,6vw,88px);align-items:center}
+.offer .cover{max-width:360px;box-shadow:16px 18px 0 var(--shadow);border-left:0}
+.price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-top:1.4rem}
+.price strong{white-space:nowrap;font:500 clamp(3rem,6vw,4.4rem)/1 var(--serif);color:var(--navy);letter-spacing:-.02em}
+.price span{color:var(--ink-2)}
+.offer ul{margin-top:1.4rem;padding-left:1.2rem}
+.offer li{margin:.35rem 0}
+.offer li::marker{color:var(--teal)}
+.offer .cta-row{margin-top:2rem}
+.offer .small{margin-top:1rem}
+
+/* faq */
+.faq{padding:clamp(56px,8vw,104px) 0}
+.faq .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,5vw,72px)}
+.qa{border-top:2px solid var(--navy)}
+details{border-bottom:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:22px 0;font:400 1.3rem/1.3 var(--serif);color:var(--navy)}
+summary::-webkit-details-marker{display:none}
+summary svg{width:22px;height:22px;flex:none;margin-top:.15rem;transition:transform .2s}
+details[open] summary svg{transform:rotate(45deg)}
+details p{padding:0 0 22px;color:var(--ink-2)}
+
+/* footer */
+footer{background:var(--navy);color:#C9D7E1;padding:48px 0 56px;font-size:.98rem}
+footer .wrap{display:grid;gap:14px}
+footer a{color:var(--peach)}
+footer a:hover{color:#fff}
+footer p{max-width:80ch}
+
+/* sticky buy bar on small screens */
+.buybar{display:none}
+
+@media (max-width:900px){
+  .hero .wrap,.news .wrap,.anno,.included .wrap,.sigilo .wrap,.offer .wrap,.faq .wrap{grid-template-columns:1fr}
+  .screen figcaption{position:static;margin-top:.8rem}
+  .notes{position:static}
+  .offer .cover{max-width:240px}
+  .buybar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:5;align-items:center;justify-content:space-between;gap:12px;padding:10px var(--gut);background:var(--paper);border-top:1px solid var(--rule);box-shadow:0 -6px 18px rgba(16,44,64,.08)}
+  .buybar strong{white-space:nowrap;font:500 1.5rem/1 var(--serif)}
+  .buybar .btn{min-height:48px;box-shadow:none}
+  body{padding-bottom:72px}
+}
+@media (max-width:560px){
+  .case{grid-template-columns:1fr}
+  .top .btn{display:none}
+  .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Advocacia com Claude, início"><i aria-hidden="true"></i>Advocacia com Claude</a>
+    <a class="btn btn-main" data-checkout href="https://app.vendria.com.br/c/GkZ4TPufnwXFDhTY1wWEEJCP-1RI4sl6">Comprar por R$ 67</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div>
+      <h1 id="h-hero">O risco não é usar IA. É usar sem método.</h1>
+      <p class="lead">90 prompts para a prática jurídica e a gestão do escritório. Todos proíbem inventar dados, normas e decisões, e os de análise terminam numa conferência antes de você usar a resposta.</p>
+      <div class="cta-row">
+        <a class="btn btn-main" data-checkout href="https://app.vendria.com.br/c/GkZ4TPufnwXFDhTY1wWEEJCP-1RI4sl6">Comprar por R$ 67</a>
+        <a class="btn btn-ghost" href="assets/amostra-gratuita.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+          Ler a amostra grátis
+        </a>
+      </div>
+      <p class="small">E-book em PDF + 90 prompts em texto. Acesso liberado após a confirmação do pagamento.</p>
+    </div>
+    <figure class="screen">
+      <video src="assets/video-apresentacao.mp4" poster="assets/video-poster.webp" controls playsinline preload="metadata" aria-label="Vídeo de apresentação do e-book, 32 segundos"></video>
+      <figcaption>Apresentação em 32 segundos, com páginas reais do livro.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="news" aria-labelledby="h-news">
+  <div class="wrap">
+    <div>
+      <h2 id="h-news">Jurisprudência inventada já virou multa.</h2>
+      <p class="turn">A ferramenta não assina a petição. Quem protocola responde pelo que está nela.</p>
+    </div>
+    <div class="cases">
+      <article class="case">
+        <b>10%<small>do valor da causa</small></b>
+        <div>
+          <p>Multa por litigância de má-fé a recurso que citou jurisprudência e doutrina inexistentes. A defesa alegou uso inadvertido de uma ferramenta de IA.</p>
+          <cite>TJSC, 6ª Câmara de Direito Civil, fev. 2025 · <a href="https://www.conjur.com.br/2025-fev-20/tj-sc-aplica-multa-por-recurso-que-citou-precedentes-inventados-por-ia/" rel="noopener" target="_blank">Conjur</a></cite>
+        </div>
+      </article>
+      <article class="case">
+        <b>5%<small>e ofício à OAB-SP</small></b>
+        <div>
+          <p>Precedentes gerados por IA em recurso. O tribunal não aceitou atribuir o erro a estagiários nem à ferramenta e enviou o caso à OAB.</p>
+          <cite>TRT-2, 6ª Turma, fev. 2026 · <a href="https://conjur.com.br/2026-fev-16/uso-de-jurisprudencia-criada-por-ia-gera-multa-por-ma-fe-e-oficio-a-oab/" rel="noopener" target="_blank">Conjur</a></cite>
+        </div>
+      </article>
+      <article class="case">
+        <b>77%<small>dos advogados usam IA</small></b>
+        <div>
+          <p>Eram 55% no ano anterior. Só 34% das organizações jurídicas têm orçamento para ferramentas ou capacitação.</p>
+          <cite>OAB SP, Relatório sobre o Impacto da IA no Direito 2026 · <a href="https://exame.com/inteligencia-artificial/ia-ja-e-usada-por-77-dos-advogados-e-redefine-a-pratica-juridica-aponta-estudo-da-oab/" rel="noopener" target="_blank">Exame</a></cite>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="ficha" aria-labelledby="h-ficha">
+  <div class="wrap">
+    <header>
+      <h2 id="h-ficha">Uma ficha como ela está no livro.</h2>
+      <p class="lead">Prompt 01, análise crítica de contrato. Cada uma das 90 fichas segue o mesmo desenho: finalidade, prompt para copiar, exemplo ilustrativo, variações e como reutilizar.</p>
+    </header>
+    <div class="anno">
+      <figure class="page">
+        <img src="assets/ficha-prompt-01.webp" width="1100" height="1556" alt="Página do Prompt 01, Análise Crítica de Contrato — Radar de Riscos, com o bloco Prompt para copiar e a Conferência final." loading="lazy">
+        <span class="mark m1" aria-hidden="true"></span>
+        <span class="mark m2" aria-hidden="true"></span>
+        <span class="mark m3" aria-hidden="true"></span>
+      </figure>
+      <ol class="notes">
+        <li><h3>Prompt para copiar</h3><p>O texto vai inteiro para o Claude. Os campos entre colchetes recebem o seu caso, e o que faltar vira pergunta em vez de suposição.</p></li>
+        <li><h3>A regra de todas as fichas</h3><p><q>Não invente dados, normas, decisões, citações ou resultados.</q> Está nos 90 prompts.</p></li>
+        <li><h3>Conferência final</h3><p><q>Use apenas referências conferidas e aponte o documento que sustenta cada conclusão.</q> A revisão faz parte do prompt, não fica para depois.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="included" aria-labelledby="h-inc">
+  <div class="wrap">
+    <div>
+      <h2 id="h-inc">O que você recebe</h2>
+      <p class="lead">Um PDF para ler e consultar, e os mesmos prompts em texto puro para copiar sem quebrar a formatação.</p>
+    </div>
+    <div>
+      <ul class="files">
+        <li>E-book em PDF<span>248 páginas, sumário clicável e índice dos 90 prompts.</span><em>PDF</em></li>
+        <li>Biblioteca de prompts em texto<span>Um arquivo completo e 90 arquivos individuais, numerados.</span><em>TXT</em></li>
+        <li>Guia de preparação e revisão<span>Como montar o contexto, identificar lacunas e conferir a resposta.</span><em>NO PDF</em></li>
+        <li>Plano de implantação de 30 dias<span>Com ficha de validação para transformar um prompt em rotina do escritório.</span><em>NO PDF</em></li>
+      </ul>
+      <h3 class="areas-h">14 áreas do escritório</h3>
+      <ol class="areas">
+        <li><span>01</span>Prática jurídica</li><li><span>02</span>Análise de decisões</li><li><span>03</span>Atendimento ao cliente</li><li><span>04</span>Relacionamento e contratação</li><li><span>05</span>Gestão do escritório</li><li><span>06</span>Operações</li><li><span>07</span>Financeiro</li><li><span>08</span>Controladoria</li><li><span>09</span>Pessoas e desenvolvimento</li><li><span>10</span>Conhecimento</li><li><span>11</span>Proteção de dados</li><li><span>12</span>Identidade visual</li><li><span>13</span>Conteúdo e posicionamento</li><li><span>14</span>Mídia e mensuração</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sigilo" aria-labelledby="h-sig">
+  <div class="wrap">
+    <div>
+      <h2 id="h-sig">O cliente não entra no primeiro teste.</h2>
+      <p>A <a href="https://www.oab.org.br/noticia/62704/oab-aprova-recomendacoes-para-uso-de-ia-na-pratica-juridica" rel="noopener" target="_blank">recomendação do Conselho Federal da OAB</a> pede que o advogado garanta o sigilo do que coloca numa ferramenta de IA. O guia do livro parte daí: teste com caso fictício, minimize o que entra e defina quem revisa antes de usar.</p>
+    </div>
+    <ul class="rules">
+      <li>Dados fictícios no primeiro teste.</li>
+      <li>Informação do cliente minimizada.</li>
+      <li>Um responsável pela revisão.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="offer" id="comprar" aria-labelledby="h-offer">
+  <div class="wrap">
+    <img class="cover" src="assets/capa.webp" width="720" height="1018" alt="Capa do e-book Advocacia com Claude, 90 prompts para a prática jurídica e a gestão do escritório." loading="lazy">
+    <div>
+      <h2 id="h-offer">Advocacia com Claude</h2>
+      <p class="lead">90 prompts para a prática jurídica e a gestão do escritório.</p>
+      <div class="price"><strong>R$ 67</strong><span>pagamento único, Pix ou cartão</span></div>
+      <ul>
+        <li>E-book em PDF e 90 prompts em texto</li>
+        <li>Guia de revisão e plano de implantação de 30 dias</li>
+        <li>Garantia de 7 dias pela plataforma de pagamento</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-main" data-checkout href="https://app.vendria.com.br/c/GkZ4TPufnwXFDhTY1wWEEJCP-1RI4sl6">Comprar por R$ 67</a>
+        <a class="btn btn-ghost" href="assets/amostra-gratuita.pdf" download>Ler a amostra grátis</a>
+      </div>
+      <p class="small">Não inclui assinatura do Claude, consultoria individual nem integrações configuradas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <h2 id="h-faq">Perguntas frequentes</h2>
+    <div class="qa">
+      <details><summary>Preciso saber programar?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Não para usar os prompts avulsos. Você copia o texto, preenche o contexto e revisa a resposta. Recursos de reutilização mais avançados dependem das funcionalidades e permissões da ferramenta.</p></details>
+      <details><summary>O produto inclui acesso ao Claude?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Não. O acesso à ferramenta é separado. Recursos, limites e condições dependem da sua conta e podem mudar.</p></details>
+      <details><summary>Os prompts evitam erro ou multa?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Não prometemos isso. Os prompts pedem que a IA não invente e que aponte a fonte de cada conclusão, mas fontes, prazos, cálculos e decisões continuam sujeitos à sua revisão profissional.</p></details>
+      <details><summary>Posso usar no celular?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>O PDF abre em qualquer leitor. Para copiar prompts longos e trabalhar com documentos, o computador é mais confortável; os arquivos TXT preservam o texto na cópia.</p></details>
+      <details><summary>Como recebo o produto?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Depois da confirmação do pagamento, a plataforma libera o download do e-book em PDF e do pacote com os prompts em texto.</p></details>
+      <details><summary>É material oficial da Anthropic ou da OAB?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Não. É uma publicação independente, sem afiliação, patrocínio ou endosso dessas instituições.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Advocacia com Claude · Edição 1.0, setembro de 2026 · Vendido por Prompt'sClaude.</p>
+    <p>Material educativo. Os exemplos do livro são fictícios e ilustrativos; o conteúdo não substitui análise profissional nem garante resultados. Publicação independente, sem afiliação ou endosso da Anthropic ou da OAB. Claude é uma marca da Anthropic.</p>
+  </div>
+</footer>
+
+<div class="buybar" aria-hidden="false">
+  <strong>R$ 67</strong>
+  <a class="btn btn-main" data-checkout href="https://app.vendria.com.br/c/GkZ4TPufnwXFDhTY1wWEEJCP-1RI4sl6">Comprar</a>
+</div>
+
+<script>
+  // Único lugar para trocar o checkout (Vendria hoje; Kiwify depois).
+  const CHECKOUT_URL = "https://app.vendria.com.br/c/GkZ4TPufnwXFDhTY1wWEEJCP-1RI4sl6";
+  document.querySelectorAll("[data-checkout]").forEach((a) => { a.href = CHECKOUT_URL; a.rel = "noopener"; });
+</script>
+</body>
+</html>
